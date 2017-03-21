@@ -1,0 +1,57 @@
+<!DOpx CTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style >
+		body{
+			width: 100%;
+			height: 100%;
+			background:#000;
+			overflow: hidden;
+			
+		}
+	</style>
+	<body>
+		
+	</body>
+	<script>
+		var cw=document.documentElement.clientWidth;
+		var ch=document.documentElement.clientHeight+300;
+		var arr=[];
+		//body加上场景
+		setInterval(function(){
+			document.body.style.transform="rotate("+(Math.random()*60-30)+"deg)";
+		},3000)
+		
+		//创建div,给div加上过渡，然后循环出每一个，让变换
+		for(var i=0;i<100;i++){
+			var div=document.createElement("div");
+			div.style.cssText="width:1px;height:6px;position:absolute;left:"+((cw-100)*Math.random()+50)+"px;top:-200px;background:#fff";	
+			div.style.transition="transform 2s ease "+(Math.random()*3)+"s"; 
+			document.body.appendChild(div);
+			arr.push(div);
+		}
+		//由于单线程，浏览器渲染模式：单线程运行的，程序运行完，但是div没有渲染到页面中，渲染不执行动画，动画不执行渲染，阻止程序运行setTimeout()
+		setTimeout(function(){
+			for(var i=0;i<arr.length;i++){
+				arr[i].style.transform="translate(0,"+(ch)+"px)";
+				arr[i].addEventListener("webkitTransitionEnd",function(){
+					this.style.transition="none";
+					this.style.transform="translate(0,0)";
+					var that=this;
+					setTimeout(function(){
+						that.style.transition="transform 2s ease "+(Math.random()*3)+"s"; 
+						that.style.transform="translate(0,"+(ch)+"px)";
+					},0)
+					
+				})
+			}
+			
+		},0);
+		
+		
+	</script>
+	
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+	body{
+		background:#00A99E;
+	}
+	.clock{
+		width: 200px;height: 200px;
+		margin:auto;
+		background:#fff;
+		box-shadow: 0 0 5px #000;
+		border-radius: 50%;border:10px solid #67D2C8;
+		position: fixed;
+		left: 0;right: 0;top: 0;bottom: 0;
+	}
+	.shadow{
+		height: 220px;
+	    width: 220px;
+	    position: absolute;
+	    left:-10px;
+	    top: 100px;
+	    transform-origin: 110px 0;
+	    transform: rotate(-45deg);
+	    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+	}
+	</style>
+	<body>
+		<div class="clock">
+			<div class="shadow"></div>
+		</div>
+	</body>
+	<script>
+		var clock=document.querySelector(".clock");
+		creatTime();
+		var newdate=new Date();
+		var hour=newdate.getHours();
+		var minutes=newdate.getMinutes();
+		var second=newdate.getSeconds();
+		var h=creatLine(3,50,"#000",hour*30+minutes*6/12);
+		var m=creatLine(2,70,"#000",minutes*6);
+		var s=creatLine(1,80,"#000",second*6);
+		setInterval(function(){		
+			var newdate=new Date();
+			var hour=newdate.getHours();
+			var minutes=newdate.getMinutes();
+			var second=newdate.getSeconds();
+			h.style.transform="rotate("+(hour*30+minutes*6/12)+"deg)";
+            m.style.transform="rotate("+minutes*6+"deg)";
+            s.style.transform="rotate("+second*6+"deg)";
+		},1000);
+		
+	
+		function creatTime(){
+			var widths,heights;
+			for(var i=0;i<60;i++){
+				if(i%5==0){
+					widths=2;
+					heights=12;
+				}else {
+					widths=1;
+					heights=6;
+				}
+				var times=document.createElement("div");
+				times.style.cssText="width:"+widths+"px;height:"+heights+"px;background:#000;position:absolute;left:"+(200-widths)/2+"px;top:0;transform: rotate("+i*6+"deg);transform-origin:center 100px";
+				clock.appendChild(times);
+			}
+			
+		}
+		
+		function creatLine(w,h,c,a){
+			var div=document.createElement("div");
+			div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;left:"+(200-w)/2+"px;top:"+(200/2-h)+"px;transform-origin:center bottom";
+			div.style.transform="rotate("+a+"deg)";
+			clock.appendChild(div);
+			return div;
+		}
+	</script>
+</html>
