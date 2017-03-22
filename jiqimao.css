@@ -259,7 +259,7 @@
     width: 220px;
     height: 165px;
     background: #07beea;
-  	background: linear-gradient(to left top,#07beea, #0073b3 50%,#0096be 75%,#00b0e0 ,#0096be 100% ,#333 114%);
+  	background: linear-gradient(to left,#07beea, #0073b3 50%,#0096be 75%,#00b0e0 ,#0096be 100% ,#333 114%);
 	background: -webkit-linear-gradient(right, #07beea, #0073b3 50%,#0096be 75%,#00b0e0 ,#0096be 100% ,#333 114%); 
 	background: -o-linear-gradient(right, #07beea, #0073b3 50%,#0096be 75%,#00b0e0 ,#0096be 100% ,#333 114%); 
 	background: -moz-linear-gradient(right, #07beea, #0073b3 50%,#0096be 75%,#00b0e0 ,#0096be 100% ,#333 114%); 
